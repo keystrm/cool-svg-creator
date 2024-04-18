@@ -19,7 +19,7 @@ function generateSVG() {
 }
 
 const svgContent = generateSVG();
-const filePath = './saved_svgs/animated-grid.svg';
+const filePath = './saved_svgs/animated-grid-by-plain-node.svg';
 
 // Ensure the directory exists
 fs.mkdirSync('./saved_svgs', { recursive: true }); // Synchronous directory creation

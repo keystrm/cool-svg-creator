@@ -6,7 +6,7 @@ const port = 3000;
 // Route that triggers SVG generation and saves it to the server
 app.get('/generate-svg', (req, res) => {
     const svg = generateSVG();
-    const filePath = './saved_svgs/animated-grid.svg'; // Define a path to save the file
+    const filePath = './saved_svgs/animated-grid-by-express.svg'; // Define a path to save the file
 
     // Ensure the directory exists
     fs.mkdir('./saved_svgs', { recursive: true }, (err) => {
