@@ -1,4 +1,4 @@
-# Simple Grid SVG Creation Package
+# COOL-SVG-CREATOR
 
 This package is used to create simple grid SVGs in Node.js. There are two methods to create animated SVGs using this package:
 
@@ -16,6 +16,12 @@ node app.js
 # Request SVG generation
 curl http://localhost:3000/generate-svg
 
+########################################################
+
 # Direct SVG generation
 node generate-svg.js
+
+#also you can pass arguments like color and duration
+node generate-svg.js '#00aeff' 0.5
+
 ```
