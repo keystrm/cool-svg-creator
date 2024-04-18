@@ -2,20 +2,33 @@ const fs = require('fs');
 
 function generateSVG(color, duration) {
     const svgHeader = `<svg width="600" height="100" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">`;
-    let rectangles = '';
-console.log(color,duration)
+    let animatedBody = generrateAnimatedBody('github-grid')
+    const svgFooter = `</svg>`;
+    return svgHeader + animatedBody + svgFooter;
+}
+
+function generrateAnimatedBody(key) {
+    switch (key) {
+        case 'github-grid':
+            return animatedGrid()
+    
+        default:
+            break;
+    }
+}
+
+function animatedGrid() {
+    let animatedBody = '';
     for (let i = 0; i < 55; i++) {
         for (let j = 0; j < 7; j++) {
             const animationBegin = Math.random() * duration;  // Adjusting begin times based on duration
             const rectangle = `<rect x="${i * 15}" y="${j * 15}" width="10" height="10" fill="${color}">
                 <animate attributeName="opacity" values="0.2;1;0.2" dur="${duration}s" repeatCount="indefinite" begin="${animationBegin}s" />
             </rect>`;
-            rectangles += rectangle;
+            animatedBody += rectangle;
         }
     }
-
-    const svgFooter = `</svg>`;
-    return svgHeader + rectangles + svgFooter;
+    return animatedBody;
 }
 
 // Default values
