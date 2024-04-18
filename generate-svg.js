@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 function generateSVG(color, duration) {
-    const svgHeader = `<svg width="600" height="100" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">`;
-    let animatedBody = generrateAnimatedBody('github-grid',color,duration)
+    const svgHeader = `<svg width="800" height="300" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">`;
+    let animatedBody = generrateAnimatedBody('bird-flying',color,duration)
     const svgFooter = `</svg>`;
     return svgHeader + animatedBody + svgFooter;
 }
@@ -11,6 +11,8 @@ function generrateAnimatedBody(key,color,duration) {
     switch (key) {
         case 'github-grid':
             return animatedGrid(color,duration)
+        case 'bird-flying':
+            return birdFlying(color,duration)
     
         default:
             break;
@@ -18,7 +20,6 @@ function generrateAnimatedBody(key,color,duration) {
 }
 
 function animatedGrid(color,duration) {
-    console.log(color,duration)
     let animatedBody = '';
     for (let i = 0; i < 55; i++) {
         for (let j = 0; j < 7; j++) {
@@ -30,6 +31,22 @@ function animatedGrid(color,duration) {
         }
     }
     return animatedBody;
+}
+function birdFlying(color,duration) {
+    let animations = '';
+
+    // Define a simple bird shape using SVG path
+    const birdShape = `<path d="M10 15 Q 25 5 40 15 T 70 15 Q 55 5 40 15 T 10 15 Z" fill="${color}"/>`;
+
+    // Animation for the bird to fly across the screen
+    const birdAnimation = `<animateMotion path="M 0 150 Q 400 50 800 150" dur="${duration}s" repeatCount="indefinite"/>`;
+    // Animation for the wings flapping
+    const wingFlap = `<animateTransform attributeName="transform" attributeType="XML" type="scale" values="1,1; 1,0.8; 1,1" dur="${duration / 2}s" repeatCount="indefinite"/>`;
+
+    // Add the bird with animations to the SVG
+    animations += `<g>${birdShape}${birdAnimation}${wingFlap}</g>`;
+
+    return animations;
 }
 
 // Default values
