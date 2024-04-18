@@ -2,22 +2,23 @@ const fs = require('fs');
 
 function generateSVG(color, duration) {
     const svgHeader = `<svg width="600" height="100" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">`;
-    let animatedBody = generrateAnimatedBody('github-grid')
+    let animatedBody = generrateAnimatedBody('github-grid',color,duration)
     const svgFooter = `</svg>`;
     return svgHeader + animatedBody + svgFooter;
 }
 
-function generrateAnimatedBody(key) {
+function generrateAnimatedBody(key,color,duration) {
     switch (key) {
         case 'github-grid':
-            return animatedGrid()
+            return animatedGrid(color,duration)
     
         default:
             break;
     }
 }
 
-function animatedGrid() {
+function animatedGrid(color,duration) {
+    console.log(color,duration)
     let animatedBody = '';
     for (let i = 0; i < 55; i++) {
         for (let j = 0; j < 7; j++) {
@@ -37,7 +38,6 @@ let duration = 1; // 1 second, ensure it's a number
 
 // Command line arguments
 const args = process.argv.slice(2);
-console.log(args)
 if (args.length >= 2) {
     color = args[0];
     duration = parseFloat(args[1]);  // Convert duration to a floating-point number
